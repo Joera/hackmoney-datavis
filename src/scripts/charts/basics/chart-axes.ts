@@ -68,6 +68,15 @@ export class ChartAxes {
                 this.axis = d3.axisRight(this.scale);
 
                 break;
+
+            case 'middle' :
+
+              this.axisGroup
+                .attr('class', 'y-axis');
+
+              this.axis = d3.axisRight(this.scale);
+
+              break;
         }
 
         return;
@@ -93,8 +102,17 @@ export class ChartAxes {
 
                case 'linear' :
 
+                 if(this.config.extra.noTicks) {
+
                    this.axis
-                       .ticks(4);
+                     .ticks(0)
+                     .tickSizeOuter(0);
+
+                 } else {
+
+                   this.axis
+                     .ticks(4);
+                 }
 
                    break;
 
@@ -191,6 +209,14 @@ export class ChartAxes {
 
 
                     break;
+
+              case 'middle' :
+
+                this.axisGroup
+                  .attr("transform", "translate(" + (dimensions.width / 2) + "," + 0 + ")");
+
+
+                break;
 
                 default :
 

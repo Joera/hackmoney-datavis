@@ -11,7 +11,7 @@ export default class VotesController {
 
     this.html = new HtmlService();
     this.body = [].slice.call(document.getElementsByTagName('body'))[0];
-    this.main = [].slice.call(document.getElementsByTagName('main'))[0]
+    this.main = [].slice.call(document.getElementsByTagName('main'))[0];
   }
 
   init(proposals: any) {
@@ -63,6 +63,38 @@ export default class VotesController {
     const votesGraph = new GraphController();
     votesGraph.init(proposals, container.id,'ProposalTimeline', config, mapping);
 
+  }
+
+  grid(proposals) {
+
+    const config = {
+      "graphType": "EngagementGrid",
+      "xScaleType": "linear",
+      "yScaleType": "linear",
+      "xParameter": "totalValue",
+      "yParameter": "delegateCount",
+      "padding": {
+        "top": 30,
+        "bottom": 30,
+        "left": 0,
+        "right": 0
+      },
+      "margin": {
+        "top": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0
+      },
+      "extra": {
+        "noTicks" : true
+      }
+
+    };
+
+    const mapping = [{}]
+
+    const votesGraph = new GraphController();
+    votesGraph.init(proposals, 'engagement_grid','EngagementGrid', config, mapping);
   }
 }
 
